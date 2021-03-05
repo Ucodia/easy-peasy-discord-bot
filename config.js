@@ -1,5 +1,5 @@
 module.exports = {
   prefix: "/",
   scope: ["easy-peasy"],
-  commands: ["ping", "cromch", "breathe"],
+  commands: ["ping", "cromch"],
 };
