@@ -47,7 +47,9 @@ client.on("message", (message) => {
 
   if (commands[command]) {
     if (Array.isArray(config.commands) && !config.commands.includes(command)) {
-      console.log(`Skipping command ${command} as it is not currently enabled`);
+      console.log(
+        `Skipping command "${command}" as it is not currently enabled`
+      );
     } else {
       commands[command](message, ...args);
     }
