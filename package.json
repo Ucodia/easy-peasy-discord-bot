@@ -1,0 +1,16 @@
+{
+  "name": "easy-peasy-discord-bot",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0"
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}
