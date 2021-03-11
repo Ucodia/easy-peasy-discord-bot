@@ -1,6 +1,6 @@
 const discord = require("discord.js");
 
-module.exports = async function (message) {
+module.exports = async (message) => {
   const embed = new discord.MessageEmbed();
 
   embed

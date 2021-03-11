@@ -14,7 +14,7 @@ The name of the file matters since it will be used as a command name.
 
 Then copy the following template:
 ```
-module.exports = async function(message, arg1) {
+module.exports = async (message, arg1) => {
   message.channel.send(`Hello ${arg1}`)
 }
 ```
