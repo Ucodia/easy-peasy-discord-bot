@@ -11,29 +11,18 @@ client.once("ready", () => {
   console.log(JSON.stringify(config, null, 2));
 
   // verify config
-  if (!Array.isArray(config.scope)) {
+  if (!Array.isArray(config.channels)) {
     console.log(
-      "Info: No scope configuration found, bot will listen to all channels"
+      "Info: No channels configuration found, bot will listen to all channels"
     );
-  }
-  if (!Array.isArray(config.commands)) {
-    console.log(
-      "Info: No commands configuration found, all commands will be enabled"
-    );
-  } else {
-    config.commands.forEach((command) => {
-      if (!commands[command]) {
-        console.log(`Info: Command "${command}" does not exists`);
-      }
-    });
   }
 });
 
 client.on("message", (message) => {
   // filter messages out of scope
   if (
-    Array.isArray(config.scope) &&
-    !config.scope.includes(message.channel.name)
+    Array.isArray(config.channels) &&
+    !config.channels.includes(message.channel.name)
   )
     return;
   // filter messages from bots
@@ -46,13 +35,7 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
 
   if (commands[command]) {
-    if (Array.isArray(config.commands) && !config.commands.includes(command)) {
-      console.log(
-        `Skipping command "${command}" as it is not currently enabled`
-      );
-    } else {
-      commands[command](message, ...args);
-    }
+    commands[command](message, ...args);
   } else {
     // TODO: Send help message to channel
   }

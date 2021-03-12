@@ -1,4 +1,4 @@
 module.exports = {
   prefix: "/",
-  scope: ["easy-peasy"],
+  channels: ["easy-peasy"],
 };
