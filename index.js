@@ -42,8 +42,3 @@ client.on("message", (message) => {
 });
 
 client.login(process.env.DISCORD_BOT_TOKEN);
-
-// self-ping every 30 minutes to keep bot alive
-setInterval(async () => {
-  const response = await axios.get("https://easy-peasy-discord-bot.glitch.me");
-}, 300000);
