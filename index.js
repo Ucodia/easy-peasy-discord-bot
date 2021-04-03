@@ -21,6 +21,7 @@ client.once("ready", () => {
 client.on("message", (message) => {
   // filter messages out of scope
   if (
+    message.channel.type !== "dm" &&
     Array.isArray(config.channels) &&
     !config.channels.includes(message.channel.name)
   )
