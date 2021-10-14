@@ -1,6 +1,6 @@
 {
   "name": "easy-peasy-discord-bot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "UNLICENSE",
   "main": "index.js",
   "scripts": {
