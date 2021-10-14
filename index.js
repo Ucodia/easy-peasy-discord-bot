@@ -23,7 +23,7 @@ client.on("message", (message) => {
   if (
     message.channel.type !== "dm" &&
     Array.isArray(config.channels) &&
-    !config.channels.includes(message.channel.name)
+    !config.channels.some((channel) => message.channel.name.endsWith(channel))
   )
     return;
   // filter messages from bots
