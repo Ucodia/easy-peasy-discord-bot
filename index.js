@@ -1,8 +1,8 @@
 require("dotenv").config();
 const discord = require("discord.js");
-const axios = require("axios");
 const commands = require("./commands");
 const config = require("./config");
+const reddit = require("./api/reddit");
 
 const client = new discord.Client();
 
@@ -43,3 +43,14 @@ client.on("message", (message) => {
 });
 
 client.login(process.env.DISCORD_BOT_TOKEN);
+
+// schedule a call to Reddit APIs to keep the cache fresh ✨
+const callRedditApis = async () =>
+  await Promise.all(
+    ["cromch", "puppies"].flatMap((sub) => [
+      reddit.getTop(sub),
+      reddit.getHot(sub),
+    ])
+  );
+callRedditApis();
+setInterval(callRedditApis, 15 * 60 * 1000 + 5000);
