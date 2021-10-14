@@ -1,28 +1,23 @@
-const axios = require("axios");
-const AxiosCacheAdapter = require("axios-cache-adapter");
+const { setup } = require("axios-cache-adapter");
 
-const cache = AxiosCacheAdapter.setupCache({
-  maxAge: 15 * 60 * 1000,
+const api = setup({
+  baseURL: "https://www.reddit.com/r",
+  cache: {
+    maxAge: 15 * 60 * 1000,
+    exclude: {
+      query: false,
+    },
+  },
 });
-const api = axios.create({
-  adapter: cache.adapter,
-});
-
-const BASE_URI = "https://www.reddit.com/r";
-const unwrapResponse = (response) => response.data.data.children;
 
 const getTop = async (subreddit) => {
-  const response = await api.get(
-    `${BASE_URI}/${subreddit}/top.json?t=all&limit=100`
-  );
-  return unwrapResponse(response);
+  const response = await api.get(`/${subreddit}/top.json?t=all&limit=100`);
+  return response.data.data.children;
 };
 
 const getHot = async (subreddit) => {
-  const response = await api.get(
-    `${BASE_URI}/${subreddit}/hot.json?t=all&limit=100`
-  );
-  return unwrapResponse(response);
+  const response = await api.get(`/${subreddit}/hot.json?t=all&limit=100`);
+  return response.data.data.children;
 };
 
 const getRandom = async (subreddit) => {
